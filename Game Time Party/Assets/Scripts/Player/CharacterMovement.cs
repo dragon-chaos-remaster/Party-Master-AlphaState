@@ -9,10 +9,21 @@ public class CharacterMovement : MonoBehaviour
     [SerializeField] float playerSpeed = 15f, jumpForce = 400f;
     CharacterController characterController;
 
+   
+
+    [SerializeField] bool estaNoChao;
+
     [SerializeField] float turnSmoothTime = 0.15f;
     [SerializeField] bool apenasNaHorizontal, apenasNaVertical;
 
     float turnSmoothVelocity;
+
+    [SerializeField] float gravity = -9.81f;
+    Vector3 velocity;
+    [SerializeField] Transform groundChecker;
+    [SerializeField] float raioDoPulo = 4f;
+    [SerializeField] float forcaDoPulo = 100f;
+    [SerializeField] LayerMask groundLayer;
     //Input input;
     //[SerializeField] Transform cam;
     Vector3 playerMovement;
@@ -25,6 +36,8 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        characterController.detectCollisions = false;
+        Cursor.lockState = CursorLockMode.Locked;
         controls = new PlayerActions();
         switch (controlTypes)
         {
@@ -64,16 +77,33 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
+       
         if (PC)
         {
             Movement();
         }
     }
-    void Movement()
+    public void Pular()
+    {
+        estaNoChao = Physics.CheckSphere(groundChecker.position, raioDoPulo,groundLayer);
+        if(estaNoChao && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+        velocity.y += gravity * Time.deltaTime;
+
+        if(Input.GetKeyDown(KeyCode.Space) && estaNoChao)
+        {
+            velocity.y = Mathf.Sqrt(forcaDoPulo * -2f * gravity);
+        }
+    }
+    public void Movement()
     {
         float xAxis = Input.GetAxis("Horizontal");
         float zAxis = Input.GetAxis("Vertical");
-     
+
+        Pular();
+        print(estaNoChao);
         if (apenasNaHorizontal && !apenasNaVertical)
         {
             //zAxis = 0f;
