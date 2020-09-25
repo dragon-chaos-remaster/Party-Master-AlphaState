@@ -14,7 +14,7 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] Collider[] activeProps;
     [SerializeField] LayerMask propsLayer;
 
-    [SerializeField] Pooling pooling;
+    
     //Mesh meshCollider;
     void Start()
     {
@@ -50,13 +50,7 @@ public class MeshChanger : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetButtonDown("Fire1"))
         {
             DetectProps();
-            GameObject aux = pooling.GetPooledObject();
-            if(aux != null)
-            {
-                aux.transform.position = transform.position;
-                aux.transform.rotation = transform.rotation;
-                aux.SetActive(true);
-            }
+            
         }
     }
     private void OnDrawGizmos()

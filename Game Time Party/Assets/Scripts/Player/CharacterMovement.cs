@@ -6,10 +6,10 @@ using UnityEngine.InputSystem;
 public enum ControlTypes { GAMEPAD_CONTROLLER, KEYBOARD_PC }
 public class CharacterMovement : MonoBehaviour
 {
-    [SerializeField] float playerSpeed = 15f, jumpForce = 400f;
+    [SerializeField] float playerSpeed = 15f;
     CharacterController characterController;
+    [SerializeField] float forcaDoPulo = 100f;
 
-   
 
     [SerializeField] bool estaNoChao;
 
@@ -22,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
     Vector3 velocity;
     [SerializeField] Transform groundChecker;
     [SerializeField] float raioDoPulo = 4f;
-    [SerializeField] float forcaDoPulo = 100f;
+    
     [SerializeField] LayerMask groundLayer;
     //Input input;
     //[SerializeField] Transform cam;
@@ -36,7 +36,8 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        characterController.detectCollisions = false;
+        characterController.detectCollisions = true;
+        //characterController.isTrigger = true;
         Cursor.lockState = CursorLockMode.Locked;
         controls = new PlayerActions();
         switch (controlTypes)
@@ -77,7 +78,7 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-       
+
         if (PC)
         {
             Movement();
@@ -90,12 +91,15 @@ public class CharacterMovement : MonoBehaviour
         {
             velocity.y = -2f;
         }
-        velocity.y += gravity * Time.deltaTime;
+        //velocity.y += gravity * Time.deltaTime;
 
         if(Input.GetKeyDown(KeyCode.Space) && estaNoChao)
         {
             velocity.y = Mathf.Sqrt(forcaDoPulo * -2f * gravity);
         }
+        //gravidade
+        velocity.y += gravity * Time.deltaTime;
+        characterController.Move(velocity * Time.deltaTime);
     }
     public void Movement()
     {
@@ -103,7 +107,7 @@ public class CharacterMovement : MonoBehaviour
         float zAxis = Input.GetAxis("Vertical");
 
         Pular();
-        print(estaNoChao);
+        //print(estaNoChao);
         if (apenasNaHorizontal && !apenasNaVertical)
         {
             //zAxis = 0f;

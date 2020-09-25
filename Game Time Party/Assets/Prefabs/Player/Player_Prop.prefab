@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 199857692}
   - component: {fileID: 199857691}
   m_Layer: 8
-  m_Name: Player
+  m_Name: Player_Prop
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 15
-  jumpForce: 400
+  forcaDoPulo: 400
   estaNoChao: 0
   turnSmoothTime: 0.15
   apenasNaHorizontal: 0
@@ -76,7 +76,6 @@ MonoBehaviour:
   gravity: -9.81
   groundChecker: {fileID: 2919465050648083935}
   raioDoPulo: 4
-  forcaDoPulo: 400
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -98,6 +97,7 @@ MonoBehaviour:
   propsLayer:
     serializedVersion: 2
     m_Bits: 512
+  pooling: {fileID: 0}
 --- !u!64 &199857690
 MeshCollider:
   m_ObjectHideFlags: 0
