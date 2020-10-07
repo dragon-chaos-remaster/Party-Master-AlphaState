@@ -36,7 +36,7 @@ public class CharacterMovement : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
-        characterController.detectCollisions = true;
+        characterController.detectCollisions = false;
         //characterController.isTrigger = true;
         Cursor.lockState = CursorLockMode.Locked;
         controls = new PlayerActions();

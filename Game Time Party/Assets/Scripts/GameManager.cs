@@ -18,4 +18,7 @@ public class GameManager : ScriptableObject
             return nickname + randomValue.ToString();
         } 
     }
+
+
+    
 }

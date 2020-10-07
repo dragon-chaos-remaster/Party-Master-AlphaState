@@ -14,13 +14,15 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] Collider[] activeProps;
     [SerializeField] LayerMask propsLayer;
 
-    
+    CharacterMovement characterMovement;
+    [SerializeField] Transform playerFeet;
     //Mesh meshCollider;
     void Start()
     {
         mesh = GetComponent<MeshFilter>().sharedMesh;
         myCollider = GetComponent<Collider>();
-        myMat = GetComponent<Renderer>().sharedMaterial;
+        myMat = GetComponent<Renderer>().material;
+        characterMovement = GetComponent<CharacterMovement>();
     }
 
     void DetectProps()
@@ -30,27 +32,32 @@ public class MeshChanger : MonoBehaviour
         {
             Mesh auxMesh = prop.GetComponent<MeshFilter>().sharedMesh;
             Material propMat = prop.GetComponent<Renderer>().sharedMaterial;
-            Mesh propMesh = Instantiate(auxMesh);
+            Mesh propMesh = Instantiate(auxMesh,playerFeet.position,Quaternion.identity);
             
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (prop != null)
             {
                 print("Prop Detected");
                 GetComponent<MeshFilter>().sharedMesh = propMesh;
-                myMat = propMat;
+                GetComponent<Renderer>().material = propMat;
+                //SetMaterialProperties(propMat);
                 myCollider = prop;
                 meshCollider.sharedMesh = propMesh;
-             
+                
             }
         }
     }
-    
+    void SetMaterialProperties(Material objMat)
+    {
+        myMat.SetColor("_Color", objMat.color);
+        myMat.mainTexture = objMat.mainTexture;
+    }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetButtonDown("Fire1"))
         {
             DetectProps();
-            
+            //print(myMat);
         }
     }
     private void OnDrawGizmos()

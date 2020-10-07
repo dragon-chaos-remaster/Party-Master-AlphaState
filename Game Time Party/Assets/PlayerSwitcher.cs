@@ -5,6 +5,7 @@ using Cinemachine;
 public class PlayerSwitcher : MonoBehaviour
 {
     [SerializeField] List<CharacterMovement> playersToSwitch = new List<CharacterMovement>();
+    //[SerializeField] List<CharacterMovingRigidBody> playersRigidToSwitch = new List<CharacterMovingRigidBody>();
     [SerializeField] List<GameObject> playerCameras = new List<GameObject>();
     int playerPointer = 0;
 
@@ -23,20 +24,37 @@ public class PlayerSwitcher : MonoBehaviour
     }
     void Switch()
     {
-        switch (playerPointer)
-        {
-            case 0:
+       
+         switch (playerPointer)
+         {
+             case 0:
+
+                playersToSwitch[playerPointer].enabled = true;
+                playerCameras[playerPointer].SetActive(true);
+                playersToSwitch[playerPointer + 1].enabled = false;
+                playerCameras[playerPointer + 1].SetActive(false);
+                playersToSwitch[playerPointer + 2].enabled = false;
+                playerCameras[playerPointer + 2].SetActive(false);
+                break;
+             case 1:
+                playersToSwitch[playerPointer - 1].enabled = false;
+                playerCameras[playerPointer - 1].SetActive(false);
                 playersToSwitch[playerPointer].enabled = true;
                 playerCameras[playerPointer].SetActive(true);
                 playersToSwitch[playerPointer + 1].enabled = false;
                 playerCameras[playerPointer + 1].SetActive(false);
                 break;
-            case 1:
+             case 2:
+                playersToSwitch[playerPointer - 2].enabled = false;
+                playerCameras[playerPointer - 2].SetActive(false);
                 playersToSwitch[playerPointer - 1].enabled = false;
                 playerCameras[playerPointer - 1].SetActive(false);
                 playersToSwitch[playerPointer].enabled = true;
                 playerCameras[playerPointer].SetActive(true);
                 break;
-        }
+
+            }
     }
+    
+    
 }
