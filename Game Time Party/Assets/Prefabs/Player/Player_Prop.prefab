@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2919465049439592161}
   - component: {fileID: 2919465049439592190}
   - component: {fileID: 2919465049439592191}
+  - component: {fileID: 6127327968281207149}
   - component: {fileID: 6719887190393033291}
   - component: {fileID: 5306198806495837867}
   - component: {fileID: 3131501424983055771}
@@ -97,7 +98,20 @@ MonoBehaviour:
   propsLayer:
     serializedVersion: 2
     m_Bits: 512
+  playerScores: {fileID: 0}
   playerFeet: {fileID: 2919465050648083935}
+--- !u!114 &6127327968281207149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2919465049439592163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bc826981300f9a43aa77ccb2708ecec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!33 &6719887190393033291
 MeshFilter:
   m_ObjectHideFlags: 0

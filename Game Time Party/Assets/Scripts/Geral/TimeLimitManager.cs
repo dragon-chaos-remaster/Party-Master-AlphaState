@@ -12,6 +12,7 @@ public class TimeLimitManager : MonoBehaviour
     GameStates gameStates;
     [SerializeField] Image counter_Text;
     [SerializeField] PumpLetters lettersToPump;
+    //WaitForSecondsRealtime waitTime;
     bool timeLimitExpired;
     void Start()
     {
@@ -19,6 +20,10 @@ public class TimeLimitManager : MonoBehaviour
         auxValue = countdown;
     }
 
+    public WaitForSecondsRealtime WaitingDuration(float duration)
+    {
+        return new WaitForSecondsRealtime(duration);
+    }
     void CountingTime()
     { 
         
@@ -39,11 +44,13 @@ public class TimeLimitManager : MonoBehaviour
     }
     IEnumerator EndGame()
     {
-        //Time.timeScale = 0;
+        Time.timeScale = 0;
         Debug.LogWarning("TIME'S UP");
         StartCoroutine(lettersToPump.PunchScaleLetters(0.9f,0.3f));
-        yield return new WaitForSecondsRealtime(5f);
-        //Time.timeScale = 1;
+        yield return WaitingDuration(2f);
+        PropHuntManager.Instance.DistributePoints();
+        yield return WaitingDuration(5f);
+        Time.timeScale = 1;
         gameStates = GameStates.Contando;
         countdown = auxValue;
     }

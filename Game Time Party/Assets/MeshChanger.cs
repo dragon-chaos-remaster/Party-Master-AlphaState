@@ -13,7 +13,7 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] float propDetectionRadius = 3f;
     [SerializeField] Collider[] activeProps;
     [SerializeField] LayerMask propsLayer;
-
+    [SerializeField] PlayerScores playerScores;
     CharacterMovement characterMovement;
     [SerializeField] Transform playerFeet;
     //Mesh meshCollider;
@@ -23,6 +23,8 @@ public class MeshChanger : MonoBehaviour
         myCollider = GetComponent<Collider>();
         myMat = GetComponent<Renderer>().material;
         characterMovement = GetComponent<CharacterMovement>();
+        playerScores = GetComponent<PlayerScores>();
+        playerScores.ThisPlayerScore = 25;
     }
 
     void DetectProps()
@@ -37,7 +39,7 @@ public class MeshChanger : MonoBehaviour
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (prop != null)
             {
-                print("Prop Detected");
+                //print("Prop Detected");
                 GetComponent<MeshFilter>().sharedMesh = propMesh;
                 GetComponent<Renderer>().material = propMat;
                 //SetMaterialProperties(propMat);
@@ -59,6 +61,10 @@ public class MeshChanger : MonoBehaviour
             DetectProps();
             //print(myMat);
         }
+    }
+    private void OnDisable()
+    {
+        playerScores.ThisPlayerScore *= 0;
     }
     private void OnDrawGizmos()
     {

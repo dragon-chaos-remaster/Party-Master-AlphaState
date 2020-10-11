@@ -25,12 +25,12 @@ public class PumpLetters : MonoBehaviour
         {
             letters[i].gameObject.SetActive(true);
             letters[i].DORewind();
-            letters[i].DOPunchScale(letters[i].localScale * amount, duration,1);
-            yield return new WaitForSeconds(.15f);
+            letters[i].DOPunchScale(letters[i].localScale * amount, duration,1).SetUpdate(true);
+            yield return new WaitForSecondsRealtime(.15f);
         }
         foreach(Image oilPaint in backgroundSprites)
         {
-            oilPaint.DOFillAmount(1, 0.9f);
+            oilPaint.DOFillAmount(1, 0.9f).SetUpdate(true);
         }
     }
 }
