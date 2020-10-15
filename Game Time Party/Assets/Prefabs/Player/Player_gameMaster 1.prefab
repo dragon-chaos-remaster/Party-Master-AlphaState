@@ -333,7 +333,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696230953957161994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.004, y: 1.182, z: 0.074}
+  m_LocalPosition: {x: 0.004, y: 1.128, z: 0.614}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1153062713832877954}
@@ -581,7 +581,7 @@ MonoBehaviour:
   playerHands:
   - {fileID: 1696230953957161995}
   - {fileID: 6306741426896934425}
-  getRange: 3
+  getRange: 1.5
   propPlayerLayer:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -997,7 +997,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3321783368927675915}
   m_LocalRotation: {x: -0.00023255062, y: 0.000000048565653, z: -1.1295215e-11, w: 1}
-  m_LocalPosition: {x: 0.0066682613, y: -0.034552407, z: 0.12950155}
+  m_LocalPosition: {x: 0.061, y: -0.043, z: 0.703}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1026704007392343969}

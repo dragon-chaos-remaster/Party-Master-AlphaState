@@ -11,8 +11,9 @@ public class CatchPropPlayer : MonoBehaviour
     //[SerializeField] Camera gameMasterCam;
     [SerializeField] float getRange;
     [SerializeField] LayerMask propPlayerLayer;
-    RaycastHit hit;
-    bool pickUp, hasClicked;
+    //RaycastHit hit;
+    bool hasClicked;
+    Collider[] pickUp;
     [SerializeField] Animator anim;
 
     [SerializeField] PlayerScores gameMasterScore;
@@ -29,22 +30,22 @@ public class CatchPropPlayer : MonoBehaviour
     {
         foreach (Transform hand in playerHands)
         {
-            pickUp = Physics.Raycast(hand.position, hand.forward, out hit, getRange, propPlayerLayer);
-            if (pickUp)
+            pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
+            foreach(Collider picks in pickUp)
             {
-                //print("Hitted:" + hit.transform.name);
-                bool isAPlayer = hit.transform.CompareTag("PropPlayer");
+                print("Hitted:" + picks.transform.name);
+                bool isAPlayer = picks.transform.CompareTag("PropPlayer");
                 if (isAPlayer)
                 {
-                    hit.transform.gameObject.SetActive(false);
+                    picks.transform.gameObject.SetActive(false);
                     PropHuntManager.numeroDePlayersPegos += 1;
                     gameMasterScore.ThisPlayerScore += 25;
                     //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
                     GameObject aux = effectPooling.GetPooledObject();
                     if (aux != null)
                     {
-                        aux.transform.position = hit.transform.position;
-                        aux.transform.rotation = hit.transform.rotation;
+                        aux.transform.position = picks.transform.position;
+                        aux.transform.rotation = picks.transform.rotation;
                         aux.SetActive(true);
                     }
                 }
@@ -67,7 +68,7 @@ public class CatchPropPlayer : MonoBehaviour
             hasClicked = true;
             //Debug.DrawRay(playerHands.position, playerHands.transform.forward * hit.distance, Color.red);
             clickCountdown = anim.GetCurrentAnimatorStateInfo(0).length;
-            print(clickCountdown);
+            //print(clickCountdown);
         }
         if (hasClicked)
         {
