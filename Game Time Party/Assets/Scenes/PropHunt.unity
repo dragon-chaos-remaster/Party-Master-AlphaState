@@ -349,7 +349,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 284805465}
-  m_LocalRotation: {x: 0.06364957, y: 0.00000001769997, z: -0.0000000011288844, w: 0.9979723}
+  m_LocalRotation: {x: 0.063649595, y: -0.00000001769997, z: 0.0000000011288848, w: 0.9979723}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3486,7 +3486,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230622244}
-  m_LocalRotation: {x: 0.013864675, y: -0.86173004, z: 0.023582553, w: 0.50662905}
+  m_LocalRotation: {x: 0.013864674, y: -0.86173004, z: 0.023582553, w: 0.5066291}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -7316,6 +7316,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1966754453469132038, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
+      propertyPath: gravity
+      value: -12.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966754453469132038, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
+      propertyPath: raioDoPulo
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 1966754453469132039, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
       propertyPath: effectPooling
       value: 
@@ -7326,7 +7334,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1966754453469132089, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
       propertyPath: m_Height
-      value: 1.89
+      value: 0.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966754453469132089, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
+      propertyPath: m_Center.y
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 1966754453469132089, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
+      propertyPath: m_SlopeLimit
+      value: 44.18
       objectReference: {fileID: 0}
     - target: {fileID: 5107271889361597944, guid: c9920645979d77a44a6b5f85ad15d2bd, type: 3}
       propertyPath: m_ApplyRootMotion

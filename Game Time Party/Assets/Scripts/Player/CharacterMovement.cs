@@ -8,7 +8,7 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 15f;
     CharacterController characterController;
-    [SerializeField] float forcaDoPulo = 100f;
+    [SerializeField] float forcaDoPulo = 10f;
 
 
     [SerializeField] bool estaNoChao;
@@ -87,7 +87,7 @@ public class CharacterMovement : MonoBehaviour
     public void Pular()
     {
         estaNoChao = Physics.CheckSphere(groundChecker.position, raioDoPulo,groundLayer);
-        if(estaNoChao && velocity.y < 0)
+        if(estaNoChao && velocity.y < 0f)
         {
             velocity.y = -2f;
         }
