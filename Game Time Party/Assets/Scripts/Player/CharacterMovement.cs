@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 public enum ControlTypes { GAMEPAD_CONTROLLER, KEYBOARD_PC }
 public class CharacterMovement : MonoBehaviour
 {
@@ -20,9 +19,9 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] float gravity = -9.81f;
     Vector3 velocity;
-    [SerializeField] Transform groundChecker;
+    [SerializeField] Transform groundChecker, lookAtCamera;
     [SerializeField] float raioDoPulo = 4f;
-    
+    Animator anim;
     [SerializeField] LayerMask groundLayer;
     //Input input;
     //[SerializeField] Transform cam;
@@ -35,8 +34,10 @@ public class CharacterMovement : MonoBehaviour
     bool PC;
     void Awake()
     {
+        anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         characterController.detectCollisions = false;
+        
         //characterController.isTrigger = true;
         Cursor.lockState = CursorLockMode.Locked;
         controls = new PlayerActions();
@@ -78,11 +79,15 @@ public class CharacterMovement : MonoBehaviour
     }
     void Update()
     {
-
         if (PC)
         {
             Movement();
         }
+    }
+    public void BlendTreeParams(float xAxis,float zAxis)
+    {
+        anim.SetFloat("BlendX", xAxis);
+        anim.SetFloat("BlendY", zAxis);
     }
     public void Pular()
     {
@@ -132,6 +137,24 @@ public class CharacterMovement : MonoBehaviour
 
             playerMovement = Quaternion.Euler(0f, anguloDeVisao, 0f) * Vector3.forward;
             characterController.Move(playerMovement.normalized * playerSpeed * Time.deltaTime);
+        }
+        if (this.gameObject.GetComponent<Animator>().enabled)
+        {
+            BlendTreeParams(xAxis, zAxis);
+        }
+    }
+
+    public void LookAtSomthing(float weight, Transform target)
+    {
+        target.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,transform.position.y,-transform.position.z));
+        anim.SetLookAtPosition(target.position);
+        anim.SetLookAtWeight(weight,0.5f,1f,0.25f);
+    } 
+    private void OnAnimatorIK(int layerIndex)
+    {
+        if (this.gameObject.CompareTag("GameMaster"))
+        {
+            LookAtSomthing(0.2f, lookAtCamera);
         }
     }
 }

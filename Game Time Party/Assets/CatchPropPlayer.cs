@@ -87,4 +87,11 @@ public class CatchPropPlayer : MonoBehaviour
 
 
     }
+    private void OnDrawGizmosSelected()
+    {
+        foreach (Transform item in playerHands)
+        {
+            Gizmos.DrawWireSphere(item.position, getRange);
+        }
+    }
 }

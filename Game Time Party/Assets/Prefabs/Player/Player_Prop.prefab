@@ -76,6 +76,7 @@ MonoBehaviour:
   apenasNaVertical: 0
   gravity: -9.81
   groundChecker: {fileID: 2919465050648083935}
+  lookAtCamera: {fileID: 0}
   raioDoPulo: 1.36
   groundLayer:
     serializedVersion: 2
