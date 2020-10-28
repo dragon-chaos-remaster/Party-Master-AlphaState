@@ -30,31 +30,34 @@ public class CatchPropPlayer : MonoBehaviour
     {
         foreach (Transform hand in playerHands)
         {
-            pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
-            foreach(Collider picks in pickUp)
+            do
             {
-                print("Hitted:" + picks.transform.name);
-                bool isAPlayer = picks.transform.CompareTag("PropPlayer");
-                if (isAPlayer)
+                pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
+                foreach (Collider picks in pickUp)
                 {
-                    picks.transform.gameObject.SetActive(false);
-                    PropHuntManager.numeroDePlayersPegos += 1;
-                    gameMasterScore.ThisPlayerScore += 25;
-                    //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
-                    GameObject aux = effectPooling.GetPooledObject();
-                    if (aux != null)
+                    print("Hitted:" + picks.transform.name);
+                    bool isAPlayer = picks.transform.CompareTag("PropPlayer");
+                    if (isAPlayer)
                     {
-                        aux.transform.position = picks.transform.position;
-                        aux.transform.rotation = picks.transform.rotation;
-                        aux.SetActive(true);
+                        picks.transform.gameObject.SetActive(false);
+                        PropHuntManager.numeroDePlayersPegos += 1;
+                        gameMasterScore.ThisPlayerScore += 25;
+                        //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
+                        GameObject aux = effectPooling.GetPooledObject();
+                        if (aux != null)
+                        {
+                            aux.transform.position = picks.transform.position;
+                            aux.transform.rotation = picks.transform.rotation;
+                            aux.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        print("Not a Player");
+                        // return;
                     }
                 }
-                else
-                {
-                    print("Not a Player");
-                    // return;
-                }
-            }
+            } while (clickCountdown >= 0.5f);
         }
     }
 
@@ -67,7 +70,7 @@ public class CatchPropPlayer : MonoBehaviour
             //print(hasClicked);
             hasClicked = true;
             //Debug.DrawRay(playerHands.position, playerHands.transform.forward * hit.distance, Color.red);
-            clickCountdown = anim.GetCurrentAnimatorStateInfo(0).length;
+            clickCountdown = anim.GetCurrentAnimatorStateInfo(0).length + 0.3f;
             //print(clickCountdown);
         }
         if (hasClicked)

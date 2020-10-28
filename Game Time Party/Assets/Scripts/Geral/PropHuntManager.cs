@@ -10,9 +10,10 @@ public class PropHuntManager : MonoBehaviour
     public static int numeroDePlayersPegos;
     [SerializeField] int totalDePlayers = 4;
     [SerializeField] GameObject gameMaster;
+    [SerializeField] TimeLimitManager timeLimit;
     [SerializeField] List<PlayerScores> propPlayers;
     //[SerializeField] UnityEvent distributeEvents;
-
+    
     [SerializeField] List<TextMeshProUGUI> scoreTexts;
     static PropHuntManager instance;
     public static PropHuntManager Instance { get { return instance; } }
@@ -40,6 +41,12 @@ public class PropHuntManager : MonoBehaviour
             scoreTexts[i].gameObject.SetActive(true);
         }
     }
+    private void Update()
+    {
+        if(numeroDePlayersPegos == totalDePlayers - 1)
+        {
+            timeLimit.gameStates = GameStates.Finished;
+        }
+    }
 
-    
 }

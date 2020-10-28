@@ -19,7 +19,9 @@ public class CharacterMovement : MonoBehaviour
 
     [SerializeField] float gravity = -9.81f;
     Vector3 velocity;
-    [SerializeField] Transform groundChecker, lookAtCamera;
+    [SerializeField] Transform  lookAtCamera;
+    [SerializeField] Transform[] groundCheckers;
+
     [SerializeField] float raioDoPulo = 4f;
     Animator anim;
     [SerializeField] LayerMask groundLayer;
@@ -91,7 +93,10 @@ public class CharacterMovement : MonoBehaviour
     }
     public void Pular()
     {
-        estaNoChao = Physics.CheckSphere(groundChecker.position, raioDoPulo,groundLayer);
+        for (int i = 0; i < groundCheckers.Length; i++)
+        {
+            estaNoChao = Physics.CheckSphere(groundCheckers[i].position, raioDoPulo, groundLayer);
+        }       
         if(estaNoChao && velocity.y < 0f)
         {
             velocity.y = -2f;

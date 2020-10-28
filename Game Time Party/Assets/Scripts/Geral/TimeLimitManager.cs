@@ -9,11 +9,11 @@ public class TimeLimitManager : MonoBehaviour
 {
     [SerializeField] float countdown = 60f;
     float auxValue;
-    GameStates gameStates;
+    public GameStates gameStates;
     [SerializeField] Image counter_Text;
     [SerializeField] PumpLetters lettersToPump;
     //WaitForSecondsRealtime waitTime;
-    bool timeLimitExpired;
+    bool timeLimitExpired, gameEnded;
     void Start()
     {
         DOTween.Init(false, false, LogBehaviour.Verbose).SetCapacity(400,100);
@@ -33,11 +33,15 @@ public class TimeLimitManager : MonoBehaviour
             counter_Text.DOFillAmount(0, auxValue);
             
         }
+        if(gameStates == GameStates.Finished && !gameEnded)
+        {
+            gameEnded = true;
+            StartCoroutine(EndGame());
+        }
         if(countdown <= 0 && !timeLimitExpired)
         {
             //Coisas acontecem
-            timeLimitExpired = true;
-            StartCoroutine(EndGame());
+            timeLimitExpired = true;           
             gameStates = GameStates.Finished;
             
         }

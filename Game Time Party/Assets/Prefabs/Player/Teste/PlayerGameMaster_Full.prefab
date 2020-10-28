@@ -2968,7 +2968,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1885395087235952352}
   m_Layer: 11
-  m_Name: Foot_R
+  m_Name: Hand_R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2982,7 +2982,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7802824808206166960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22, y: -11.03, z: 0.43}
+  m_LocalPosition: {x: 0.01, y: 0.81, z: 2.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8752835640222462242}
@@ -3421,13 +3421,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 5.96
-  m_Radius: 1.53
+  m_Height: 4.31
+  m_Radius: 1.23
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: -8.29, z: 0}
+  m_Center: {x: 0, y: 2.5, z: 0}
 --- !u!114 &3495716030796129236
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3440,16 +3440,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d025e46a0b2c0f4aba9f69c2d29574f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 15
+  playerSpeed: 20
   forcaDoPulo: 10
   estaNoChao: 0
   turnSmoothTime: 0.15
   apenasNaHorizontal: 0
   apenasNaVertical: 0
   gravity: -13
-  groundChecker: {fileID: 9147629835894329322}
+  groundChecker: {fileID: 6803383655696009464}
   lookAtCamera: {fileID: 528680622881155206}
-  raioDoPulo: 0.5
+  raioDoPulo: 1
   groundLayer:
     serializedVersion: 2
     m_Bits: 1024
@@ -3469,10 +3469,12 @@ MonoBehaviour:
   playerHands:
   - {fileID: 2652211201425621770}
   - {fileID: 7441991765684398337}
-  getRange: 3.5
+  - {fileID: 9147629835894329322}
+  - {fileID: 1885395087235952352}
+  getRange: 2.16
   propPlayerLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 823
   anim: {fileID: 0}
   gameMasterScore: {fileID: 849610067820402644}
   effectPooling: {fileID: 0}
@@ -3956,7 +3958,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9147629835894329322}
   m_Layer: 11
-  m_Name: Foot_L
+  m_Name: Hand_L
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3970,7 +3972,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9147629835894329323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.15, y: -11.03, z: 0.43}
+  m_LocalPosition: {x: -0.01, y: 3.59, z: 2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8752835640222462242}

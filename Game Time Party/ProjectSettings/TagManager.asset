@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PropPlayer
   - GameMaster
+  - DeactivateThis
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Cinemachine;
 public class MeshChanger : MonoBehaviour
 {
     Mesh mesh;
@@ -16,6 +17,11 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] PlayerScores playerScores;
     CharacterMovement characterMovement;
     [SerializeField] Transform playerFeet;
+
+    [SerializeField] Pooling transformEffect;
+
+    [SerializeField] ParentChildrenListing listaDeBones;
+    [SerializeField] CinemachineFreeLook playerCamera;
     //Mesh meshCollider;
     void Start()
     {
@@ -39,13 +45,23 @@ public class MeshChanger : MonoBehaviour
             MeshCollider meshCollider = GetComponent<MeshCollider>();
             if (prop != null)
             {
+                listaDeBones.DeactivateParent();
                 //print("Prop Detected");
+                playerCamera.Follow = playerFeet;
+                playerCamera.LookAt = playerFeet;
                 GetComponent<MeshFilter>().sharedMesh = propMesh;
                 GetComponent<Renderer>().material = propMat;
+                GameObject sfx = transformEffect.GetPooledObject();
+                if(sfx != null)
+                {
+                    sfx.SetActive(true);
+                    sfx.transform.position = transform.position;
+                    sfx.transform.rotation = transform.rotation;
+                }
                 //SetMaterialProperties(propMat);
                 myCollider = prop;
                 meshCollider.sharedMesh = propMesh;
-                
+                prop.gameObject.SetActive(false);
             }
         }
     }
