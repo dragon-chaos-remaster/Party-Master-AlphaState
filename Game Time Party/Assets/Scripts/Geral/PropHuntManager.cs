@@ -24,6 +24,7 @@ public class PropHuntManager : MonoBehaviour
         for (int i = 0; i < scoreTexts.Count; i++)
         {
             scoreTexts[i].gameObject.SetActive(false);
+            //propPlayers.Add(GameObject.FindGameObjectWithTag("PropPlayer").GetComponent<PlayerScores>());
         }
     }
     public void DistributePoints()

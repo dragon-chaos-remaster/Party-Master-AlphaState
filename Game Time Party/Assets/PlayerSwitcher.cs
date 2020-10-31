@@ -21,6 +21,13 @@ public class PlayerSwitcher : MonoBehaviour
         {
             playerPointer = -1;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            foreach(CharacterMovement moveScript in playersToSwitch)
+            {
+                moveScript.enabled = true;
+            }
+        }
     }
     void Switch()
     {
