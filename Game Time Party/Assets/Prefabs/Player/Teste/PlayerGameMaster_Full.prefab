@@ -426,6 +426,36 @@ Transform:
   m_Father: {fileID: 3670489861964290067}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1088281525580944020
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6482472406898796047}
+  m_Layer: 11
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6482472406898796047
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088281525580944020}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8752835640222462242}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1145259340635088780
 GameObject:
   m_ObjectHideFlags: 0
@@ -2399,7 +2429,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5880912312301376452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.27, z: 2.92}
+  m_LocalPosition: {x: 0, y: 10.56, z: 2.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8752835640222462242}
@@ -2982,7 +3012,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7802824808206166960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.01, y: 0.81, z: 2.64}
+  m_LocalPosition: {x: 0.01, y: 3.12, z: 2.64}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8752835640222462242}
@@ -3388,6 +3418,7 @@ Transform:
   - {fileID: 9147629835894329322}
   - {fileID: 1885395087235952352}
   - {fileID: 528680622881155206}
+  - {fileID: 6482472406898796047}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3447,8 +3478,10 @@ MonoBehaviour:
   apenasNaHorizontal: 0
   apenasNaVertical: 0
   gravity: -13
-  groundChecker: {fileID: 6803383655696009464}
   lookAtCamera: {fileID: 528680622881155206}
+  groundCheckers:
+  - {fileID: 6803383655696009464}
+  - {fileID: 8539908693385900213}
   raioDoPulo: 1
   groundLayer:
     serializedVersion: 2
@@ -3471,7 +3504,7 @@ MonoBehaviour:
   - {fileID: 7441991765684398337}
   - {fileID: 9147629835894329322}
   - {fileID: 1885395087235952352}
-  getRange: 2.16
+  getRange: 2.45
   propPlayerLayer:
     serializedVersion: 2
     m_Bits: 823
@@ -3972,7 +4005,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9147629835894329323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 3.59, z: 2.76}
+  m_LocalPosition: {x: -0.01, y: 5.68, z: 2.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8752835640222462242}

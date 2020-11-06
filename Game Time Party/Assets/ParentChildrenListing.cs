@@ -1,16 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class ParentChildrenListing : MonoBehaviour
 {
     [SerializeField] Transform theParent;
-    [SerializeField] List<GameObject> childCount = new List<GameObject>();
-    
+    [SerializeField] List<GameObject> childCount;
+
+    public List<GameObject> ChildCount => childCount;
     
     void Awake()
     {
-        foreach(Transform child in theParent)
+        childCount = new List<GameObject>();
+        foreach (Transform child in theParent)
         {
             childCount.Add(child.gameObject);
         }
@@ -20,23 +22,22 @@ public class ParentChildrenListing : MonoBehaviour
     /// Pega todos os objetos da lista 
     /// </summary>
     /// <returns></returns>
-    public GameObject GetChildren()
+    public GameObject[] GetChildren()
     {
         foreach(GameObject child in childCount)
         {
             if (childCount.Count != 0)
             {
-                //print("HHHHHHHHHHHHHHHHHHHHHHHH");
-                return child;
-            }
-            else
-            {
-                Debug.LogError("There are no children objects in this parent!");
+                print(child);
+                //return child;
             }
         }
-        return null;
+        return childCount.ToArray();
     }
-
+    public int GetNumberOfChildren()
+    {
+        return childCount.Count;
+    }
     public void ActivateParent()
     {
         theParent.gameObject.SetActive(true);
@@ -50,7 +51,11 @@ public class ParentChildrenListing : MonoBehaviour
     }
     public void ActivateAllChildren()
     {
-        GetChildren().SetActive(true);
+        for (int i = 0; i < childCount.Count; i++)
+        {
+            childCount[i].SetActive(true);
+        }
+       
     }
     public void ActivateChildren(int numberOfChildren)
     {
@@ -61,7 +66,10 @@ public class ParentChildrenListing : MonoBehaviour
     }
     public void DeactivateAllChildren()
     {
-        GetChildren().SetActive(false);
+        for (int i = 0; i < childCount.Count; i++)
+        {
+            childCount[i].SetActive(false);
+        }
     }
     public void DeactivateChildren(int numberOfChildren)
     {

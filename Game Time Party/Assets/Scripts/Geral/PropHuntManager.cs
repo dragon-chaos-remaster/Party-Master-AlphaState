@@ -11,10 +11,12 @@ public class PropHuntManager : MonoBehaviour
     [SerializeField] int totalDePlayers = 4;
     [SerializeField] GameObject gameMaster;
     [SerializeField] TimeLimitManager timeLimit;
+    [SerializeField] ParentChildrenListing spawnPointParent;
+    [SerializeField] List<Transform> propPositions;
     [SerializeField] List<PlayerScores> propPlayers;
     //[SerializeField] UnityEvent distributeEvents;
-    
     [SerializeField] List<TextMeshProUGUI> scoreTexts;
+
     static PropHuntManager instance;
     public static PropHuntManager Instance { get { return instance; } }
     void Awake()
@@ -25,6 +27,18 @@ public class PropHuntManager : MonoBehaviour
         {
             scoreTexts[i].gameObject.SetActive(false);
             //propPlayers.Add(GameObject.FindGameObjectWithTag("PropPlayer").GetComponent<PlayerScores>());
+        }       
+        RandomizeProps();
+    }
+    /// <summary>
+    /// Organiza os props em uma posição aleatória, de acordo com o número de pontos de spawn no mapa
+    /// </summary>
+    void RandomizeProps()
+    {
+        for (int i = 0; i < propPositions.Count; i++)
+        {
+            propPositions[i].position = spawnPointParent.ChildCount[i].transform.position;
+            propPositions[i].rotation = spawnPointParent.ChildCount[i].transform.rotation;
         }
     }
     public void DistributePoints()

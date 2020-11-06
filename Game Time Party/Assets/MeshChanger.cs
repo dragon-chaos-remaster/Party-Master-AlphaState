@@ -16,15 +16,18 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] LayerMask propsLayer;
     [SerializeField] PlayerScores playerScores;
     CharacterMovement characterMovement;
-    [SerializeField] Transform playerFeet;
+    [SerializeField] Transform playerFeet, cameraLookAtCenter;
 
     [SerializeField] Pooling transformEffect;
-
+    bool effectActivated;
+    float countdown = 1.5f, aux = 0;
     [SerializeField] ParentChildrenListing listaDeBones;
     [SerializeField] CinemachineFreeLook playerCamera;
+
     //Mesh meshCollider;
     void Start()
     {
+        aux = countdown;
         mesh = GetComponent<MeshFilter>().sharedMesh;
         myCollider = GetComponent<Collider>();
         myMat = GetComponent<Renderer>().material;
@@ -48,15 +51,16 @@ public class MeshChanger : MonoBehaviour
                 listaDeBones.DeactivateParent();
                 //print("Prop Detected");
                 playerCamera.Follow = playerFeet;
-                playerCamera.LookAt = playerFeet;
+                playerCamera.LookAt = cameraLookAtCenter;
                 GetComponent<MeshFilter>().sharedMesh = propMesh;
                 GetComponent<Renderer>().material = propMat;
                 GameObject sfx = transformEffect.GetPooledObject();
-                if(sfx != null)
+                if(sfx != null && !effectActivated)
                 {
                     sfx.SetActive(true);
                     sfx.transform.position = transform.position;
                     sfx.transform.rotation = transform.rotation;
+                    effectActivated = true;
                 }
                 //SetMaterialProperties(propMat);
                 myCollider = prop;
@@ -65,6 +69,19 @@ public class MeshChanger : MonoBehaviour
             }
         }
     }
+    public void CountdownFunction()
+    {
+        countdown -= Time.deltaTime;
+        if (countdown <= 0)
+        {
+            StuffHappens();
+            countdown = aux;
+        }
+    }
+    void StuffHappens()
+    {
+        effectActivated = false;
+    }
     void SetMaterialProperties(Material objMat)
     {
         myMat.SetColor("_Color", objMat.color);
@@ -72,6 +89,7 @@ public class MeshChanger : MonoBehaviour
     }
     void Update()
     {
+        CountdownFunction();
         if (Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetButtonDown("Fire1"))
         {
             DetectProps();

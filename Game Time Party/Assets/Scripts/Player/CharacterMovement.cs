@@ -151,7 +151,7 @@ public class CharacterMovement : MonoBehaviour
 
     public void LookAtSomthing(float weight, Transform target)
     {
-        target.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,transform.position.y,-transform.position.z));
+        //target.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,transform.position.y,-transform.position.z));
         anim.SetLookAtPosition(target.position);
         anim.SetLookAtWeight(weight,0.5f,1f,0.25f);
     } 
