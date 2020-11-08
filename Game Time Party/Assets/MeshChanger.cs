@@ -19,7 +19,7 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] Transform playerFeet, cameraLookAtCenter;
 
     [SerializeField] Pooling transformEffect;
-    bool effectActivated;
+    bool effectActivated, pickedUpProp;
     float countdown = 1.5f, aux = 0;
     [SerializeField] ParentChildrenListing listaDeBones;
     [SerializeField] CinemachineFreeLook playerCamera;
@@ -41,6 +41,7 @@ public class MeshChanger : MonoBehaviour
         activeProps = Physics.OverlapSphere(transform.position, propDetectionRadius, propsLayer);
         foreach (Collider prop in activeProps)
         {
+
             Mesh auxMesh = prop.GetComponent<MeshFilter>().sharedMesh;
             Material propMat = prop.GetComponent<Renderer>().sharedMaterial;
             Mesh propMesh = Instantiate(auxMesh,playerFeet.position,Quaternion.identity);
@@ -65,7 +66,20 @@ public class MeshChanger : MonoBehaviour
                 //SetMaterialProperties(propMat);
                 myCollider = prop;
                 meshCollider.sharedMesh = propMesh;
-                prop.gameObject.SetActive(false);
+                switch (prop.tag)
+                {
+                    case "EstanteObj":
+                        characterMovement.GetCharacterController.height = 18.54f;
+                        break;
+                    default:
+                        characterMovement.GetCharacterController.height = 2f;
+                        break;
+                }
+                if (!pickedUpProp)
+                {
+                    prop.gameObject.SetActive(false);
+                    pickedUpProp = true;
+                }               
             }
         }
     }
@@ -81,6 +95,7 @@ public class MeshChanger : MonoBehaviour
     void StuffHappens()
     {
         effectActivated = false;
+        pickedUpProp = false;
     }
     void SetMaterialProperties(Material objMat)
     {

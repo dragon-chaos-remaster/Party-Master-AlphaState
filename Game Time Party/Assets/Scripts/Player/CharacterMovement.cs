@@ -7,6 +7,8 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 15f;
     CharacterController characterController;
+
+    public CharacterController GetCharacterController => characterController;
     [SerializeField] float forcaDoPulo = 10f;
 
 

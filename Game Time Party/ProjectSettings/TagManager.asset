@@ -7,6 +7,7 @@ TagManager:
   - PropPlayer
   - GameMaster
   - DeactivateThis
+  - EstanteObj
   layers:
   - Default
   - TransparentFX
