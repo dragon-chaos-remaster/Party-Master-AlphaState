@@ -7,10 +7,10 @@ public class DetectObjectsNear : MonoBehaviour
 {
     //[SerializeField] Vector3[] detectedObjects;
     [SerializeField] Transform whoDetects;
-    [SerializeField] float detectionValue;
+    [SerializeField] float[] detectionValue;
     [SerializeField] Transform[] objectsToDetect;
 
-    [SerializeField] Image meterSprite;
+    [SerializeField] Image[] meterSprite;
     [SerializeField] Gradient colorsToChange;
     [SerializeField] ParticleSystem closerHighlight;
     [SerializeField] bool hasPlayed;
@@ -21,15 +21,16 @@ public class DetectObjectsNear : MonoBehaviour
     /// Também checa os valores do paramêtro para executar funções.  
     /// </summary>
     /// <param name="evaluationValue"></param>
-    void ChangeMeterColor(float evaluationValue)
-    {       
+    void ChangeMeterColor(float evaluationValue, int index)
+    {
         //Calculo para fazer com que os valores só interpolem entre 0 e 1, sendo 0f o valor minimo e 300f o valor máximo
         evaluationValue = Mathf.InverseLerp(0f, 300f, evaluationValue);
-        meterSprite.color = colorsToChange.Evaluate(evaluationValue);
+        meterSprite[index].color = colorsToChange.Evaluate(evaluationValue);
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             print(evaluationValue);
         }
+        
         var rateOveertime = closerHighlight.emission.rateOverTime;
         float countdown = 2f;
         if (evaluationValue <= 0.5f && (!hasPlayed))
@@ -58,16 +59,16 @@ public class DetectObjectsNear : MonoBehaviour
         {
             for (int i = 0; i < objectsToDetect.Length; i++)
             {
-                detectionValue = Vector3.Distance(transform.position, objectsToDetect[i].position);
-                ChangeMeterColor(detectionValue);
+                detectionValue[i] = Vector3.Distance(transform.position, objectsToDetect[i].position);
+                ChangeMeterColor(detectionValue[i], i);
             }
         }
         else
         {
             for (int i = 0; i < objectsToDetect.Length; i++)
             {
-                detectionValue = Vector3.Distance(whoDetects.position, objectsToDetect[i].position);
-                ChangeMeterColor(detectionValue);
+                detectionValue[i] = Vector3.Distance(whoDetects.position, objectsToDetect[i].position);
+                ChangeMeterColor(detectionValue[i], i);
             }
         }
     }
