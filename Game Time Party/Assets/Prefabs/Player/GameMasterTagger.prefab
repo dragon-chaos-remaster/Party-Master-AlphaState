@@ -1092,7 +1092,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3049899849567828388}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.93, y: 6.07, z: 0.058}
+  m_LocalPosition: {x: -2.93, y: 6.07, z: 1.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3711542496422647705}
@@ -1533,7 +1533,6 @@ MonoBehaviour:
   playerHands:
   - {fileID: 7672927052607976366}
   - {fileID: 1889740066042745712}
-  - {fileID: 1644590156850345642}
   - {fileID: 3372703416180618039}
   getRange: 3
   propPlayerLayer:
@@ -1555,11 +1554,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   whoDetects: {fileID: 3711542496422647705}
-  detectionValue: 296.05862
+  detectionValue: []
   objectsToDetect:
   - {fileID: 0}
   - {fileID: 0}
-  meterSprite: {fileID: 0}
+  meterSprite:
+  - {fileID: 0}
   colorsToChange:
     serializedVersion: 2
     key0: {r: 1, g: 0, b: 0, a: 1}
@@ -1847,7 +1847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1644590156850345642
 Transform:
   m_ObjectHideFlags: 0
@@ -2103,7 +2103,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5803203778418318410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.77, y: 6.07, z: 0.057998657}
+  m_LocalPosition: {x: 2.77, y: 6.07, z: 1.6199799}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3711542496422647705}

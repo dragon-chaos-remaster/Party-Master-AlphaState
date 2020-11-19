@@ -30,8 +30,8 @@ public class CatchPropPlayer : MonoBehaviour
     {
         foreach (Transform hand in playerHands)
         {
-            do
-            {
+            
+            
                 pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
                 foreach (Collider picks in pickUp)
                 {
@@ -42,6 +42,7 @@ public class CatchPropPlayer : MonoBehaviour
                         picks.transform.gameObject.SetActive(false);
                         PropHuntManager.numeroDePlayersPegos += 1;
                         gameMasterScore.ThisPlayerScore += 25;
+                        print("RODEUI");
                         //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
                         GameObject aux = effectPooling.GetPooledObject();
                         if (aux != null)
@@ -57,7 +58,8 @@ public class CatchPropPlayer : MonoBehaviour
                         // return;
                     }
                 }
-            } while (clickCountdown >= 0.5f);
+            
+            
         }
     }
 

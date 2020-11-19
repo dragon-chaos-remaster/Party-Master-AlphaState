@@ -58,7 +58,7 @@ public class PropHuntManager : MonoBehaviour
     }
     private void Update()
     {
-        if(numeroDePlayersPegos == totalDePlayers - 1)
+        if(numeroDePlayersPegos >= totalDePlayers - 1)
         {
             timeLimit.gameStates = GameStates.Finished;
         }
