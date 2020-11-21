@@ -24,6 +24,7 @@ public class MeshChanger : MonoBehaviour
     [SerializeField] ParentChildrenListing listaDeBones;
     [SerializeField] CinemachineFreeLook playerCamera;
 
+    public bool PickedUpProp => pickedUpProp;
     //Mesh meshCollider;
     void Start()
     {
@@ -36,7 +37,7 @@ public class MeshChanger : MonoBehaviour
         playerScores.ThisPlayerScore = 25;
     }
 
-    void DetectProps()
+    public void DetectProps()
     {
         activeProps = Physics.OverlapSphere(transform.position, propDetectionRadius, propsLayer);
         foreach (Collider prop in activeProps)

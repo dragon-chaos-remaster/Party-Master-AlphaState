@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public enum ControlTypes { GAMEPAD_CONTROLLER, KEYBOARD_PC }
+using UnityEngine.AI;
+public enum ControlTypes { GAMEPAD_CONTROLLER, KEYBOARD_PC , AUTOMATIC}
 public class CharacterMovement : MonoBehaviour
 {
     [SerializeField] float playerSpeed = 15f;
@@ -34,17 +35,23 @@ public class CharacterMovement : MonoBehaviour
     Vector3 direcaoDeMovimento;
 
     PlayerActions controls;
+
+    NavMeshAgent agent;
+    [SerializeField] Transform[] targetsToDetect;
+    Transform targetToFollow;
     [SerializeField] ControlTypes controlTypes;
-    bool PC;
+    bool PC, navMesh;
+    MeshChanger propChanger;
     void Awake()
     {
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        characterController.detectCollisions = false;
-        
+        characterController.detectCollisions = false; 
         //characterController.isTrigger = true;
         Cursor.lockState = CursorLockMode.Locked;
         controls = new PlayerActions();
+        bool checkTag = gameObject.CompareTag("GameMaster");
+        
         switch (controlTypes)
         {
             case ControlTypes.GAMEPAD_CONTROLLER:
@@ -52,6 +59,20 @@ public class CharacterMovement : MonoBehaviour
                 break;
             case ControlTypes.KEYBOARD_PC:
                 PC = true;
+                break;
+            case ControlTypes.AUTOMATIC:              
+                if(GetComponent<NavMeshAgent>() == null)
+                {
+                    Debug.LogError("THERE IS NO NAV MESH HERE BITCH");
+                    return;
+                }
+                if (!checkTag)
+                {
+                    propChanger = GetComponent<MeshChanger>();
+                }
+                navMesh = true;
+                targetToFollow = targetsToDetect[Random.Range(0, targetsToDetect.Length)];
+                agent = GetComponent<NavMeshAgent>();
                 break;
         }
         
@@ -72,7 +93,11 @@ public class CharacterMovement : MonoBehaviour
     //        direcaoDeMovimento = new Vector3(xAxis, 0f, zAxis).normalized;
     //    }
     //}
-
+    void OlhandoParaAlgo()
+    {
+        Vector3 targetLookAt = new Vector3(targetToFollow.position.x, transform.position.y, targetToFollow.position.z);
+        transform.LookAt(targetToFollow);
+    }
     private void OnEnable()
     {
         controls.Gameplay.Enable();
@@ -86,6 +111,41 @@ public class CharacterMovement : MonoBehaviour
         if (PC)
         {
             Movement();
+        }
+        else if (navMesh)
+        {
+            
+            OlhandoParaAlgo();
+            if (targetToFollow != null && agent.isOnNavMesh)
+            {
+                //agent.SetDestination(targetToFollow.position);
+                //agent.Warp(groundCheckers[0].position);
+                agent.velocity = (targetToFollow.position - transform.position).normalized * playerSpeed;
+                float distanciaDoAlvo = Vector3.Distance(transform.position, targetToFollow.position);
+                //print(transform.position.sqrMagnitude);
+                if (distanciaDoAlvo < 38f)
+                {
+                    //print("Entrando");
+                    propChanger.DetectProps();
+                }
+                if (propChanger.PickedUpProp)
+                {
+                    propChanger.enabled = false;
+                    agent.velocity = Vector3.zero;
+                    agent.speed = 0;
+                    //agent.isStopped = true;
+                    //agent.baseOffset = 0.7f;
+                    //agent.Warp((transform.position + Vector3.up) * 0.8f);
+                }
+                if (this.gameObject.GetComponent<Animator>().enabled)
+                {
+                    BlendTreeParams(1, 1);
+                }
+            }
+            else
+            {
+                agent.isStopped = true;
+            }
         }
     }
     public void BlendTreeParams(float xAxis,float zAxis)
@@ -112,6 +172,10 @@ public class CharacterMovement : MonoBehaviour
         //gravidade
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+    }
+    public void AutomaticMovement()
+    {
+        agent.velocity = playerMovement;
     }
     public void Movement()
     {
