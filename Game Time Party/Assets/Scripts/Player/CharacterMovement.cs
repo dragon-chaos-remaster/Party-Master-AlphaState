@@ -120,7 +120,9 @@ public class CharacterMovement : MonoBehaviour
             {
                 //agent.SetDestination(targetToFollow.position);
                 //agent.Warp(groundCheckers[0].position);
-                agent.velocity = (targetToFollow.position - transform.position).normalized * playerSpeed;
+                //Vector3 agentVel = (targetToFollow.position - transform.position).normalized * playerSpeed;
+                agent.speed = playerSpeed;
+                agent.SetDestination(targetToFollow.position);
                 float distanciaDoAlvo = Vector3.Distance(transform.position, targetToFollow.position);
                 //print(transform.position.sqrMagnitude);
                 if (distanciaDoAlvo < 38f)
@@ -128,14 +130,14 @@ public class CharacterMovement : MonoBehaviour
                     //print("Entrando");
                     propChanger.DetectProps();
                 }
-                if (propChanger.PickedUpProp)
+                if (propChanger.PickedUpProp && !agent.isStopped)
                 {
                     propChanger.enabled = false;
                     agent.velocity = Vector3.zero;
                     agent.speed = 0;
-                    //agent.isStopped = true;
+                    agent.isStopped = true;
                     //agent.baseOffset = 0.7f;
-                    //agent.Warp((transform.position + Vector3.up) * 0.8f);
+                    agent.Warp(targetToFollow.position);
                 }
                 if (this.gameObject.GetComponent<Animator>().enabled)
                 {

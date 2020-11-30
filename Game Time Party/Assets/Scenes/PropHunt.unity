@@ -965,7 +965,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1807961874}
-  m_PlaneDistance: 7.57
+  m_PlaneDistance: 4.56
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -3402,7 +3402,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 928449130}
   m_LocalRotation: {x: -0.02555275, y: -0.52484167, z: -0.015765414, w: 0.8506702}
-  m_LocalPosition: {x: -0.00000980816, y: -0.000023377821, z: 0.000016988233}
+  m_LocalPosition: {x: -0.00002302266, y: -0.000023377821, z: 0.00000935884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2116612913}
@@ -4245,8 +4245,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255596
+  m_fontColor: {r: 0.92719316, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -4865,8 +4865,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1230622244}
-  m_LocalRotation: {x: -0.040981, y: -0.5244694, z: -0.025284203, w: 0.8500666}
-  m_LocalPosition: {x: -0.00000980816, y: -0.000023377821, z: 0.000016988233}
+  m_LocalRotation: {x: -0.040981, y: -0.52446926, z: -0.025284195, w: 0.85006666}
+  m_LocalPosition: {x: -0.00002302266, y: -0.000023377821, z: 0.00000935884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1448531287}
@@ -4939,8 +4939,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246278651}
-  m_LocalRotation: {x: -0.01007524, y: -0.52504164, z: -0.00621619, w: 0.85099417}
-  m_LocalPosition: {x: -0.00000980816, y: -0.000023377821, z: 0.000016988233}
+  m_LocalRotation: {x: -0.010075271, y: -0.5250416, z: -0.0062162057, w: 0.8509942}
+  m_LocalPosition: {x: -0.00002302266, y: -0.000023377821, z: 0.00000935884}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 865659926}
@@ -5015,8 +5015,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255596
+  m_fontColor: {r: 0.92719316, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6407,7 +6407,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1581808081}
-  m_LocalRotation: {x: 0.0013218521, y: -0.67497873, z: 0.0012092738, w: 0.73783505}
+  m_LocalRotation: {x: 0.001321882, y: -0.67497885, z: 0.0012092739, w: 0.737835}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -6968,6 +6968,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8937268132002657412, guid: d2e5263cf37a6c24c9407571590b69ad, type: 3}
+--- !u!208 &1739395212
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739395210}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 34.777, y: 34.765003, z: 34.777}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 2.354, y: -33.879, z: -9.498}
+  m_TimeToStationary: 0.5
 --- !u!4 &1739395213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: d2e5263cf37a6c24c9407571590b69ad, type: 3}
@@ -7109,7 +7125,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1807961874}
-  m_PlaneDistance: 6
+  m_PlaneDistance: 1.69
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -8349,8 +8365,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278255596
+  m_fontColor: {r: 0.92719316, g: 1, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
