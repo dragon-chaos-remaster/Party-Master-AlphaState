@@ -12,7 +12,7 @@ public class CatchPropPlayer : MonoBehaviour
     [SerializeField] float getRange;
     [SerializeField] LayerMask propPlayerLayer;
     //RaycastHit hit;
-    bool hasClicked;
+    bool hasClicked, hasPicked;
     Collider[] pickUp;
     [SerializeField] Animator anim;
 
@@ -30,34 +30,36 @@ public class CatchPropPlayer : MonoBehaviour
     {
         foreach (Transform hand in playerHands)
         {
-            
-            
-                pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
-                foreach (Collider picks in pickUp)
-                {
-                    print("Hitted:" + picks.transform.name);
+
+
+            pickUp = Physics.OverlapSphere(hand.position, getRange, propPlayerLayer);
+            foreach (Collider picks in pickUp)
+            { 
+                print("Hitted:" + picks.transform.name);
                     bool isAPlayer = picks.transform.CompareTag("PropPlayer");
-                    if (isAPlayer)
+                 if (isAPlayer && !hasPicked)
+                 {
+                    picks.transform.gameObject.SetActive(false);
+                    PropHuntManager.numeroDePlayersPegos += 1;
+                    gameMasterScore.ThisPlayerScore += 25;
+                    hasPicked = true;
+                    print("RODEUI");
+                    //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
+                    GameObject aux = effectPooling.GetPooledObject();
+                    if (aux != null)
                     {
-                        picks.transform.gameObject.SetActive(false);
-                        PropHuntManager.numeroDePlayersPegos += 1;
-                        gameMasterScore.ThisPlayerScore += 25;
-                        print("RODEUI");
-                        //print("Player Detected. Adding up " + ScoreManager.Instance.pontuacaoGeral + "points to the GameMaster");
-                        GameObject aux = effectPooling.GetPooledObject();
-                        if (aux != null)
-                        {
-                            aux.transform.position = picks.transform.position;
-                            aux.transform.rotation = picks.transform.rotation;
-                            aux.SetActive(true);
-                        }
+                        aux.transform.position = picks.transform.position;
+                        aux.transform.rotation = picks.transform.rotation;
+                        aux.SetActive(true);
                     }
-                    else
-                    {
-                        print("Not a Player");
+
+                 }
+                 else
+                 {
+                    print("Not a Player");
                         // return;
-                    }
-                }
+                 }
+            }
             
             
         }
@@ -87,6 +89,7 @@ public class CatchPropPlayer : MonoBehaviour
         if (clickCountdown <= 0)
         {
             hasClicked = false;
+            hasPicked = false;
             clickCountdown = 0;
         }
 

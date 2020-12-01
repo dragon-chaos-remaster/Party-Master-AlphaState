@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/RoomLobbys.unity
     guid: a9bb2be786283104b80793b0d5fca2b6
   - enabled: 1
+    path: Assets/Scenes/LobbyScene.unity
+    guid: 8644f33f7a9695d468358ac783c0c711
+  - enabled: 1
     path: Assets/Scenes/PropHunt.unity
     guid: 0eea5adcc3100624ea59938106868a6d
   m_configObjects: {}
