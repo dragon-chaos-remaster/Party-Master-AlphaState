@@ -28,13 +28,13 @@ public class MeshChanger : MonoBehaviour
     //Mesh meshCollider;
     void Start()
     {
+        playerScores = GetComponent<PlayerScores>();
+        playerScores.ThisPlayerScore = 25;
         aux = countdown;
         mesh = GetComponent<MeshFilter>().sharedMesh;
         myCollider = GetComponent<Collider>();
         myMat = GetComponent<Renderer>().material;
         characterMovement = GetComponent<CharacterMovement>();
-        playerScores = GetComponent<PlayerScores>();
-        playerScores.ThisPlayerScore = 25;
     }
 
     public void DetectProps()
@@ -112,10 +112,10 @@ public class MeshChanger : MonoBehaviour
             //print(myMat);
         }
     }
-    private void OnDisable()
-    {
-        playerScores.ThisPlayerScore *= 0;
-    }
+    //private void OnDisable()
+    //{
+    //    playerScores.ThisPlayerScore *= 0;
+    //}
     private void OnDrawGizmos()
     {
         float Hue = 1, Saturation = 0.6f, Value = 2;

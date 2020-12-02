@@ -114,40 +114,7 @@ public class CharacterMovement : MonoBehaviour
         }
         else if (navMesh)
         {
-            
-            OlhandoParaAlgo();
-            if (targetToFollow != null && agent.isOnNavMesh)
-            {
-                //agent.SetDestination(targetToFollow.position);
-                //agent.Warp(groundCheckers[0].position);
-                //Vector3 agentVel = (targetToFollow.position - transform.position).normalized * playerSpeed;
-                agent.speed = playerSpeed;
-                agent.SetDestination(targetToFollow.position);
-                float distanciaDoAlvo = Vector3.Distance(transform.position, targetToFollow.position);
-                //print(transform.position.sqrMagnitude);
-                if (distanciaDoAlvo < 38f)
-                {
-                    //print("Entrando");
-                    propChanger.DetectProps();
-                }
-                if (propChanger.PickedUpProp && !agent.isStopped)
-                {
-                    propChanger.enabled = false;
-                    agent.velocity = Vector3.zero;
-                    agent.speed = 0;
-                    agent.isStopped = true;
-                    //agent.baseOffset = 0.7f;
-                    agent.Warp(targetToFollow.position);
-                }
-                if (this.gameObject.GetComponent<Animator>().enabled)
-                {
-                    BlendTreeParams(1, 1);
-                }
-            }
-            else
-            {
-                agent.isStopped = true;
-            }
+            AutomaticMovement();
         }
     }
     public void BlendTreeParams(float xAxis,float zAxis)
@@ -177,7 +144,39 @@ public class CharacterMovement : MonoBehaviour
     }
     public void AutomaticMovement()
     {
-        agent.velocity = playerMovement;
+        OlhandoParaAlgo();
+        if (targetToFollow != null && agent.isOnNavMesh)
+        {
+            //agent.SetDestination(targetToFollow.position);
+            //agent.Warp(groundCheckers[0].position);
+            //Vector3 agentVel = (targetToFollow.position - transform.position).normalized * playerSpeed;
+            agent.speed = playerSpeed;
+            agent.SetDestination(targetToFollow.position);
+            float distanciaDoAlvo = Vector3.Distance(transform.position, targetToFollow.position);
+            //print(transform.position.sqrMagnitude);
+            if (distanciaDoAlvo < 38f)
+            {
+                //print("Entrando");
+                propChanger.DetectProps();
+            }
+            if (propChanger.PickedUpProp && !agent.isStopped)
+            {
+                propChanger.enabled = false;
+                agent.velocity = Vector3.zero;
+                agent.speed = 0;
+                agent.isStopped = true;
+                //agent.baseOffset = 0.7f;
+                agent.Warp(targetToFollow.position);
+            }
+            if (this.gameObject.GetComponent<Animator>().enabled)
+            {
+                BlendTreeParams(1, 1);
+            }
+        }
+        else
+        {
+            agent.isStopped = true;
+        }
     }
     public void Movement()
     {

@@ -40,6 +40,7 @@ public class CatchPropPlayer : MonoBehaviour
                  if (isAPlayer && !hasPicked)
                  {
                     picks.transform.gameObject.SetActive(false);
+                    picks.GetComponent<PlayerScores>().ThisPlayerScore *= 0;
                     PropHuntManager.numeroDePlayersPegos += 1;
                     gameMasterScore.ThisPlayerScore += 25;
                     hasPicked = true;

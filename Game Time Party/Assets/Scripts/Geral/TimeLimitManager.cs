@@ -49,7 +49,7 @@ public class TimeLimitManager : MonoBehaviour
     IEnumerator EndGame()
     {
         Time.timeScale = 0;
-        Debug.LogWarning("TIME'S UP");
+        //Debug.LogWarning("TIME'S UP");
         StartCoroutine(lettersToPump.PunchScaleLetters(0.9f,0.3f));
         yield return WaitingDuration(2f);
         PropHuntManager.Instance.DistributePoints();
