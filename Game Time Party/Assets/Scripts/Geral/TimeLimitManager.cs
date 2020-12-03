@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public enum GameStates { Contando, Finished }
 public class TimeLimitManager : MonoBehaviour
@@ -55,8 +56,9 @@ public class TimeLimitManager : MonoBehaviour
         PropHuntManager.Instance.DistributePoints();
         yield return WaitingDuration(5f);
         Time.timeScale = 1;
-        gameStates = GameStates.Contando;
-        countdown = auxValue;
+        //gameStates = GameStates.Contando;
+        //countdown = auxValue;
+        SceneManager.LoadScene(2);
     }
     void Update()
     {

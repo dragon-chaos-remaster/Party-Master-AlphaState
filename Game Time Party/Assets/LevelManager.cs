@@ -9,9 +9,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField] Image[] imagesToAnimate;
     
     
-    public void NextScene()
+    public void NextScene(int buildIndexToChose)
     {
-        StartCoroutine(SmoothTransition(3));
+        StartCoroutine(SmoothTransition(buildIndexToChose));
     }
     IEnumerator SmoothTransition(int buildIndex)
     {

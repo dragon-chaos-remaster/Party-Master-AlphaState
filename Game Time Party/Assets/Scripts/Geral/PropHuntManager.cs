@@ -16,13 +16,14 @@ public class PropHuntManager : MonoBehaviour
     [SerializeField] List<PlayerScores> propPlayers;
     //[SerializeField] UnityEvent distributeEvents;
     [SerializeField] List<TextMeshProUGUI> scoreTexts;
-
+    [SerializeField] GameObject scoreBackground;
     static PropHuntManager instance;
     public static PropHuntManager Instance { get { return instance; } }
     void Awake()
     {
         instance = this;
         totalDePlayers = propPlayers.Count;
+        scoreBackground.SetActive(false);
         for (int i = 0; i < scoreTexts.Count; i++)
         {
             scoreTexts[i].gameObject.SetActive(false);
@@ -55,6 +56,7 @@ public class PropHuntManager : MonoBehaviour
             }
             scoreTexts[i].gameObject.SetActive(true);
         }
+        scoreBackground.SetActive(true);
     }
     private void Update()
     {

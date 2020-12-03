@@ -34,7 +34,7 @@ public class UIManager : MonoBehaviour
     public void MostrarControles(Image mask)
     {
         controlesCanvas.SetActive(true);
-        mask.GetComponent<Renderer>().sharedMaterial.DOFade(255f, 1f);
+        mask.DOFade(.65f, 1f);
     }
 
     #region CRÉDITOS BOTÃO
@@ -68,7 +68,8 @@ public class UIManager : MonoBehaviour
         if (Input.anyKeyDown)
         {
             creditosCanvas.SetActive(false);
-            creditosMaskara.GetComponent<Renderer>().sharedMaterial.DOFade(0f, 1f);
+            controlesCanvas.SetActive(false);
+            //creditosMaskara.GetComponent<Renderer>().sharedMaterial.DOFade(0f, 1f);
         }
         //if (!creditosCanvas.activeInHierarchy)
         //{
