@@ -21,6 +21,7 @@ public class PropHuntManager : MonoBehaviour
     public static PropHuntManager Instance { get { return instance; } }
     void Awake()
     {
+        timeLimit.gameStates = GameStates.Contando;
         instance = this;
         totalDePlayers = propPlayers.Count;
         scoreBackground.SetActive(false);
@@ -63,6 +64,7 @@ public class PropHuntManager : MonoBehaviour
         if(numeroDePlayersPegos >= totalDePlayers - 1)
         {
             timeLimit.gameStates = GameStates.Finished;
+            numeroDePlayersPegos = 0;
         }
     }
 

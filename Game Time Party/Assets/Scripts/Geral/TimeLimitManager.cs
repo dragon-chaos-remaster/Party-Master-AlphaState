@@ -14,10 +14,11 @@ public class TimeLimitManager : MonoBehaviour
     [SerializeField] Image counter_Text;
     [SerializeField] PumpLetters lettersToPump;
     //WaitForSecondsRealtime waitTime;
-    bool timeLimitExpired, gameEnded;
+    bool timeLimitExpired, gameEnded,startCounting;
     void Start()
     {
-        DOTween.Init(false, false, LogBehaviour.Verbose).SetCapacity(400,100);
+        gameStates = GameStates.Contando;
+        //DOTween.Init(true, true, LogBehaviour.Verbose).SetCapacity(400,100);
         auxValue = countdown;
     }
 
@@ -28,9 +29,10 @@ public class TimeLimitManager : MonoBehaviour
     void CountingTime()
     { 
         
-        if (gameStates == GameStates.Contando)
+        if (gameStates == GameStates.Contando && !startCounting)
         {
-            countdown -= Time.deltaTime;          
+            startCounting = true;
+            //countdown -= Time.deltaTime;          
             counter_Text.DOFillAmount(0, auxValue);
             
         }
@@ -39,7 +41,7 @@ public class TimeLimitManager : MonoBehaviour
             gameEnded = true;
             StartCoroutine(EndGame());
         }
-        if(countdown <= 0 && !timeLimitExpired)
+        if(counter_Text.fillAmount <= 0 && !timeLimitExpired)
         {
             //Coisas acontecem
             timeLimitExpired = true;           
@@ -55,9 +57,18 @@ public class TimeLimitManager : MonoBehaviour
         yield return WaitingDuration(2f);
         PropHuntManager.Instance.DistributePoints();
         yield return WaitingDuration(5f);
+        ResetAllSettings();
+    }
+    void ResetAllSettings()
+    {
         Time.timeScale = 1;
-        //gameStates = GameStates.Contando;
-        //countdown = auxValue;
+        gameStates = GameStates.Contando;
+        countdown = auxValue;
+        counter_Text.DOPause();
+        startCounting = false;
+        timeLimitExpired = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene(2);
     }
     void Update()
