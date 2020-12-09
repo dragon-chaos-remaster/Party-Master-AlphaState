@@ -173,10 +173,15 @@ public class CharacterMovement : MonoBehaviour
                 BlendTreeParams(1, 1);
             }
         }
-        else
+        else if(targetToFollow == null)
         {
-            agent.isStopped = true;
+            targetToFollow = targetsToDetect[Random.Range(0, targetsToDetect.Length)];
+            //agent.isStopped = true;
         }
+        //else
+        //{
+        //    agent.isStopped = true;
+        //}
     }
     public void Movement()
     {
